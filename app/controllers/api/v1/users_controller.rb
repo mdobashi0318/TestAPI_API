@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users
+    render json: @users.order('updated_at DESC')
   end
 
   # GET /users/1
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.fetch(:user, {}).permit(:name)
+      params.fetch(:user, {}).permit(:name, :text)
     end
 end
 end
